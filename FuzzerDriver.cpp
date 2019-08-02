@@ -567,7 +567,7 @@ int AnalyzeDictionary(Fuzzer *F, const Vector<Unit>& Dict,
   return 0;
 }
 
-Vector<std::string> ParseSeedInuts(const char *seed_inputs) {
+Vector<std::string> ParseSeedInputs(const char *seed_inputs) {
   // Parse -seed_inputs=file1,file2,... or -seed_inputs=@seed_inputs_file
   Vector<std::string> Files;
   if (!seed_inputs) return Files;
@@ -821,7 +821,7 @@ int FuzzerDriver(int *argc, char ***argv, UserCallback Callback) {
     exit(0);
   }
 
-  auto CorporaFiles = ReadCorpora(*Inputs, ParseSeedInuts(Flags.seed_inputs));
+  auto CorporaFiles = ReadCorpora(*Inputs, ParseSeedInputs(Flags.seed_inputs));
   F->Loop(CorporaFiles);
 
   if (Flags.verbosity)
